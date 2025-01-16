@@ -1,0 +1,31 @@
+{
+  "name": "proshop-v2",
+  "version": "1.0.0",
+  "description": "eCommerce application built with the MERN stack",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node backend/server.js",
+    "server": "nodemon backend/server.js",
+    "client": "cd frontend && npm run dev",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deeps-kums/proshop-demo.git"
+  },
+  "author": "Deepa Kumari",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/deeps-kums/proshop-demo/issues"
+  },
+  "homepage": "https://github.com/deeps-kums/proshop-demo#readme",
+  "dependencies": {
+    "concurrently": "^9.1.2",
+    "express": "^4.21.2",
+    "nodemon": "^3.1.9"
+  },
+  "devDependencies": {
+    "dotenv": "^16.4.7"
+  }
+}
