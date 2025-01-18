@@ -8,7 +8,9 @@
     "start": "node backend/server.js",
     "server": "nodemon backend/server.js",
     "client": "cd frontend && npm run dev",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "data:import": "node backend/seeder.js",
+    "data:destroy": "node backend/seeder.js -d"
   },
   "repository": {
     "type": "git",
@@ -21,8 +23,10 @@
   },
   "homepage": "https://github.com/deeps-kums/proshop-demo#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "concurrently": "^9.1.2",
     "express": "^4.21.2",
+    "mongoose": "^8.9.5",
     "nodemon": "^3.1.9"
   },
   "devDependencies": {
