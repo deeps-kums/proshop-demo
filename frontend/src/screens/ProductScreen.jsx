@@ -1,29 +1,39 @@
-import { useState, useEffect } from 'react';
+//import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 //import products from '../products';
 import { Row, Col, ListGroup, Image, ListGroupItem, Card, Button } from 'react-bootstrap';
 import Rating from "../components/Rating";
-import axios from 'axios';
+//import axios from 'axios';
+import { useGetProductDetailsQuery } from '../slices/productsApiSlice';
+import Loader from '../components/Loader';
+import Message from '../components/Message';
 
 const ProductScreen = () => {
-  const { id: productId } = useParams();
-  const [ product, setProduct ] = useState({});
+   const { id: productId } = useParams();
+//   const [ product, setProduct ] = useState({});
   //const product = products.find((p) => p._id === Number(productId) );
-  useEffect(() => {
-    const fetchProduct = async ()=> {
-        const { data } = await axios.get(`/api/products/${productId}`);
-        setProduct(data);
-        console.log(product);
-    };
-    fetchProduct();
-},{});
-  console.log(product);
+//   useEffect(() => {
+//     const fetchProduct = async ()=> {
+//         const { data } = await axios.get(`/api/products/${productId}`);
+//         setProduct(data);
+//         console.log(product);
+//     };
+//     fetchProduct();
+// },{});
+//   console.log(product);
+
+//The above code can be replaced as below
+
+const { data:product, isLoading, error } = useGetProductDetailsQuery(productId);
+
   return (
     <>
-        <Link className="btn btn-light my-3" to="/">
+    <Link className="btn btn-light my-3" to="/">
             Go back
         </Link>
+    { isLoading ? (<Loader />) : error ? (<Message variant='danger'>{ error?.data?.message || error.error }</Message>) : (
+        <>
         <Row>
            <Col md={6}>
                 <Image src={product.image} alt={product.name} fluid />
@@ -79,6 +89,8 @@ const ProductScreen = () => {
                 </Card>
            </Col>
         </Row>
+        </>
+    ) }      
     </>
   );
 }

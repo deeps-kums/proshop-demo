@@ -8,6 +8,8 @@ import { getProducts, getProductById } from '../controllers/productController.js
 router.route('/').get(getProducts);
 router.route('/:id').get(getProductById);
 
+//Get product logic shifted to productController.js
+
 // router.get('/', asyncHandler(async (req,res) => {
 //     const products = await Product.find({});
 //     res.json(products);
