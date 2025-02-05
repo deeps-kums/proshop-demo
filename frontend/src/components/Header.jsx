@@ -35,7 +35,7 @@ const Header = () => {
                             }
                         </Nav.Link>
                     </LinkContainer>
-                    <LinkContainer to="/cart">
+                    <LinkContainer to="/login">
                         <Nav.Link>
                             <FaUser /> Sign in
                         </Nav.Link>
