@@ -97,8 +97,14 @@ const OrderScreen = () => {
   }
 
   const deliverHandler = async () => {
-    await deliverOrder(orderId);
-    refetch();
+    try {
+      await deliverOrder(orderId);
+      refetch();
+      toast.success('Order delivered');
+    }
+    catch(err) {
+      toast.error(err?.data?.message || err.message);
+    }
   };
 
   return isLoading ? (
@@ -238,6 +244,8 @@ const OrderScreen = () => {
                   )}
                 </ListGroup.Item>
               )}
+
+              {/* Mark as delivered section */}
 
               {loadingDeliver && <Loader />}
 

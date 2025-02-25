@@ -7,7 +7,7 @@ import logo from '../assets/logo.png';
 import { LinkContainer } from "react-router-bootstrap";
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../slices/authSlice';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useLogoutMutation } from '../slices/usersApiSlice';
 
 const Header = () => {
@@ -69,6 +69,21 @@ const Header = () => {
                             <FaUser /> Sign in
                         </Nav.Link>
                     </LinkContainer>) }
+
+                    {/* Admin Links */}
+                    { userInfo && userInfo.isAdmin && (
+                        <NavDropdown title='Admin' id='adminmenu'>
+                            <NavDropdown.Item as={Link} to='/admin/productlist'>
+                                Products
+                            </NavDropdown.Item>
+                            <NavDropdown.Item as={Link} to='/admin/userlist'>
+                                Users
+                            </NavDropdown.Item>
+                            <NavDropdown.Item as={Link} to='/admin/orderlist'>
+                                Orders
+                            </NavDropdown.Item>
+                        </NavDropdown>
+                    )}
                   
                     </Nav>
                 </Navbar.Collapse>
