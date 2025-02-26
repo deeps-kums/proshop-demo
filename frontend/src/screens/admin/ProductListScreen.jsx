@@ -20,7 +20,7 @@ const ProductListScreen = () => {
     useDeleteProductMutation();
 
   const deleteHandler = async (id) => {
-    if (window.confirm('Are you sure')) {
+    if (window.confirm('Are you sure you want to delete?')) {
       try {
         await deleteProduct(id);
         refetch();
@@ -58,7 +58,7 @@ const ProductListScreen = () => {
       </Row>
 
       {loadingCreate && <Loader />}
-      {/* {loadingDelete && <Loader />} */}
+      {loadingDelete && <Loader />} 
       {isLoading ? (
         <Loader />
       ) : error ? (
