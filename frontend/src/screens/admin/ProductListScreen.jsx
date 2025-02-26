@@ -3,7 +3,7 @@ import { FaEdit, FaPlus, FaTrash } from 'react-icons/fa';
 import { Link, useParams } from 'react-router-dom';
 import Message from '../../components/Message';
 import Loader from '../../components/Loader';
-//import Paginate from '../../components/Paginate';
+import Paginate from '../../components/Paginate';
 import {
   useGetProductsQuery,
   useCreateProductMutation,
@@ -14,7 +14,7 @@ import { toast } from 'react-toastify';
 const ProductListScreen = () => {
   const { pageNumber } = useParams();
 
-  const { data, isLoading, error, refetch } = useGetProductsQuery();
+  const { data, isLoading, error, refetch } = useGetProductsQuery({pageNumber});
 
   const [deleteProduct, { isLoading: loadingDelete }] =
     useDeleteProductMutation();
@@ -62,7 +62,7 @@ const ProductListScreen = () => {
       {isLoading ? (
         <Loader />
       ) : error ? (
-        <Message variant='danger'>{error.data.message}</Message>
+        <Message variant='danger'>{error?.data?.message}</Message>
       ) : (
         <>
           <Table striped bordered hover responsive className='table-sm'>
@@ -77,7 +77,7 @@ const ProductListScreen = () => {
               </tr>
             </thead>
             <tbody>
-              {data?.map((product) => (
+              {data.products.map((product) => (
                 <tr key={product._id}>
                   <td>{product._id}</td>
                   <td>{product.name}</td>
@@ -105,7 +105,7 @@ const ProductListScreen = () => {
               ))}
             </tbody>
           </Table>
-          {/* <Paginate pages={data.pages} page={data.page} isAdmin={true} /> */}
+         <Paginate pages={data.pages} page={data.page} isAdmin={true} />
         </>
       )}
     </>
