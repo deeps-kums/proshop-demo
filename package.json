@@ -11,7 +11,7 @@
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "data:import": "node backend/seeder.js",
     "data:destroy": "node backend/seeder.js -d",
-    "build": "rm -rf node_modules package-lock.json && npm cache clean --force && npm install && npm install --prefix frontend && npm run build --prefix frontend"
+    "build": "rm -rf node_modules package-lock.json && npm cache clean --force && nvm use 18 && npm install && npm install --prefix frontend && npm run build --prefix frontend"
   },
   "repository": {
     "type": "git",
