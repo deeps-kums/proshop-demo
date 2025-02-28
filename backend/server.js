@@ -11,7 +11,7 @@ import { errorHandler, notFound } from './middleware/errorMiddleware.js';
 import cookieParser from 'cookie-parser';
 import uploadRoutes from './routes/uploadRoutes.js';
 
-const port = process.env.PORT || 10000;
+//const port = process.env.PORT || 5000;
 connectDB();
 
 const app = express();
@@ -66,6 +66,6 @@ if (process.env.NODE_ENV === 'production') {
     });
   }
 
-app.listen(port, () => {
-    console.log(`Server running on port${port}`);
-})
+// app.listen(port, () => {
+//     console.log(`Server running on port${port}`);
+// })
